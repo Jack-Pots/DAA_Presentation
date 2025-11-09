@@ -111,6 +111,77 @@ But is P = NP? 🤔
 
 ---
 
+# Why "NP"? Understanding the Name
+
+<v-clicks depth="2">
+
+**Nondeterministic** doesn't mean "random"
+
+It's a theoretical model where:
+- You can "guess" the right answer instantly
+- Then verify it in polynomial time
+
+**Think of it like this:**
+
+- **Finding a needle in a haystack** (hard - exponential)
+- **Checking if what you found IS the needle** (easy - polynomial)
+
+</v-clicks>
+
+<v-click>
+
+<div class="mt-8 p-4 bg-gray-800 rounded-lg">
+<div class="text-lg">NP captures problems where verification is tractable,<br>even if solving might take exponential time</div>
+</div>
+
+</v-click>
+
+---
+
+# The Exponential Problem
+
+<div class="grid grid-cols-2 gap-8">
+
+<div>
+
+### Polynomial Growth (P)
+```
+n=10:  100 operations
+n=20:  400 operations
+n=30:  900 operations
+n=100: 10,000 operations
+```
+
+<div class="text-green-400 mt-4">✓ Scales reasonably</div>
+
+</div>
+
+<div>
+
+### Exponential Growth (2^n)
+```
+n=10:  1,024 operations
+n=20:  1,048,576 operations
+n=30:  1,073,741,824 operations
+n=100: 1.27 × 10³⁰ operations
+```
+
+<div class="text-red-400 mt-4">✗ Becomes impossible fast!</div>
+
+</div>
+
+</div>
+
+<v-click>
+
+<div class="mt-8 p-4 bg-yellow-900/30 rounded border border-yellow-500">
+<div class="text-lg">At n=100, even if each operation takes 1 nanosecond,<br>exponential would take longer than the age of the universe! 🌌</div>
+</div>
+
+</v-click>
+
+---
+
 # NP Example: Sudoku
 
 <div class="grid grid-cols-2 gap-8">
@@ -353,34 +424,116 @@ Solving is hard (exponential), but verifying is easy (polynomial)
 layout: center
 ---
 
-# The Complexity Landscape
+# Visual Representation
 
-<div class="text-center">
+<div class="flex justify-center items-center h-full">
+<svg width="600" height="350" viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
 
-```mermaid
-graph TB
-    A[All Problems] --> B[Decidable]
-    B --> C[NP]
-    C --> D[P]
-    C --> E[NP-Complete]
-    E -.->|"If P=NP"| D
-    
-    style C fill:#1e40af
-    style D fill:#15803d
-    style E fill:#dc2626
-```
+<circle cx="380" cy="180" r="130" fill="none" stroke="#2563eb" stroke-width="4"/>
+<text x="360" y="110" font-size="6" fill="#2563eb" font-weight="bold">NP-Hard</text>
+
+<circle cx="220" cy="180" r="130" fill="none" stroke="#f59e42" stroke-width="4"/>
+<text x="170" y="100" font-size="8" fill="#f59e42" font-weight="bold">NP</text>
+
+<circle cx="160" cy="180" r="60" fill="none" stroke="#00FF00" stroke-width="4"/>
+<text x="150" y="185" font-size="8" fill="#00FF00" font-weight="bold">P</text>
+
+<text x="258" y="185" font-size="3.5" fill="#ec4899" font-weight="bold">NP-Complete</text>
+</svg>
 
 </div>
+
+---
+layout: center
+---
+
+# Understanding the Relationships
+
+<div class="grid grid-cols-2 gap-8 mt-8">
 
 <v-clicks>
 
-<div class="mt-8 grid grid-cols-3 gap-4 text-center">
-<div class="p-3 bg-green-900/30 rounded">P: Fast to solve</div>
-<div class="p-3 bg-blue-900/30 rounded">NP: Fast to verify</div>
-<div class="p-3 bg-red-900/30 rounded">NP-Complete: Hardest</div>
+<div class="p-6 bg-green-900/20 rounded-lg border border-green-500">
+<div class="text-2xl mb-2">🟢 P</div>
+<div class="font-bold mb-2">Efficient Problems</div>
+<div class="text-sm text-gray-300">
+• Solve: Polynomial ✓<br/>
+• Verify: Polynomial ✓<br/>
+• Examples: Sorting, BFS
+</div>
+</div>
+
+<div class="p-6 bg-blue-900/20 rounded-lg border border-blue-500">
+<div class="text-2xl mb-2">🔵 NP</div>
+<div class="font-bold mb-2">Verifiable Problems</div>
+<div class="text-sm text-gray-300">
+• Solve: Unknown<br/>
+• Verify: Polynomial ✓<br/>
+• Examples: All of P + more
+</div>
+</div>
+
+<div class="p-6 bg-red-900/20 rounded-lg border border-red-500">
+<div class="text-2xl mb-2">🔴 NP-Complete</div>
+<div class="font-bold mb-2">Hardest in NP</div>
+<div class="text-sm text-gray-300">
+• Solve: Likely exponential<br/>
+• Verify: Polynomial ✓<br/>
+• Examples: TSP, SAT, Knapsack
+</div>
+</div>
+
+<div class="p-6 bg-purple-900/20 rounded-lg border border-purple-500">
+<div class="text-2xl mb-2">🟣 NP-Hard</div>
+<div class="font-bold mb-2">At Least as Hard</div>
+<div class="text-sm text-gray-300">
+• Solve: Very hard<br/>
+• Verify: May not be in NP<br/>
+• Examples: Halting problem
+</div>
 </div>
 
 </v-clicks>
+
+</div>
+
+---
+layout: center
+---
+
+# The Key Question
+
+<div class="text-center space-y-8">
+
+<v-click>
+
+<div class="text-6xl">P ⊆ NP</div>
+
+</v-click>
+
+<v-click>
+
+<div class="text-4xl text-gray-400">But is...</div>
+
+</v-click>
+
+<v-click>
+
+<div class="text-6xl text-yellow-400">P = NP ?</div>
+
+</v-click>
+
+<v-click>
+
+<div class="mt-12 p-6 bg-blue-900/30 rounded-lg border border-blue-500">
+<div class="text-2xl mb-2">If P = NP</div>
+<div class="text-lg text-gray-300">Then P = NP = NP-Complete</div>
+<div class="text-sm text-gray-400 mt-2">(Everything collapses into P!)</div>
+</div>
+
+</v-click>
+
+</div>
 
 ---
 layout: center
@@ -393,18 +546,26 @@ layout: center
 **Practical Implications**
 
 - Know when a problem is inherently hard
-- Don't waste time finding perfect solutions
-- Use approximation algorithms instead
-- Understand computational limits
+- Don't waste time finding perfect solutions to NP-Complete problems
+- Use approximation algorithms or heuristics instead
+- Understand computational limits before starting
 
-**Real World**
+**Real World Impact**
 
-- Cryptography relies on NP-hard problems
-- Route optimization (logistics)
-- Resource scheduling
-- Network design
+- **Cryptography**: RSA encryption relies on factoring being hard (NP)
+- **Logistics**: TSP for delivery routes (use approximations)
+- **Scheduling**: Resource allocation in factories
+- **AI**: Many machine learning problems are NP-hard
 
 </v-clicks>
+
+<v-click>
+
+<div class="mt-6 p-4 bg-purple-900/30 rounded border border-purple-500">
+<div class="text-lg">If P=NP, most modern encryption would be broken! 🔓</div>
+</div>
+
+</v-click>
 
 ---
 layout: center
